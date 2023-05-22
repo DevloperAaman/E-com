@@ -1,31 +1,50 @@
 import React, { useState } from "react";
-import Basketlogo from "../image/basket.png"
 
-const Nav = ({cartVal}) => {
-    
+import Menu from "./mobile";
+import Basket  from "./basket";
 
+const Nav = ({ cartVal }) => {
+
+const[showmenu, setMenu]=useState();
     return (
-        <div>
-            <nav className="bg-[#fffcfc]  h-16   space-x-4 border-solid border-2  z-40">
-                <div className="   mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-5 md:grid-cols-5 sm:grid-cols-5 gap-2">
-
-                    <div> <h1>E-Com</h1></div>
-                    <div></div>
-                    <div></div>
-                    <div className="grid lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-3 gap-2">
-                        <div></div>
-                        <div></div>
-                        <div className="text-right object-end">
-                        <img src={Basketlogo}
-                            className="  h-12 w-12 m-2  " />
-                           
-                    </div></div>
-                    
-                    <div className="m-2 text-4xl text-[#50d71e] "><h1>{cartVal}</h1></div>
-                </div>
-
-            </nav>
+        <>
+        <nav className="bg-[#fffcfc] border-solid border-2  z-40">
+      <div className="max-w-7xl mx-auto flex items-center justify-between h-16 px-4 ">
+        <div className="flex-shrink-0 font-bold tracking-wider">
+          Not Decided Yet
         </div>
+        <div className="hidden md:block grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-2">
+          <div><Menu /> </div>
+        
+        </div>
+        <div className="hidden md:block tracking-wider">
+          <Basket cartVal={cartVal}/>
+        </div>
+        <button
+          type="button"
+          className="md:hidden bg-gray-900 inline-flex items-center justify-center p-2 rounded-md text-gray-400
+           hover:text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-700 focus:text-white transition 
+           duration-150 ease-in-out" onClick={()=> setMenu(!showmenu)}>
+          <svg
+            className="h-6 w-6"
+            stroke="currentColor"
+            fill="none"
+            viewBox="0 0 24 24">
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            ></path>
+          </svg>
+        </button>
+      </div>
+      <div className="md:hidden">
+        {showmenu && <Menu /> }
+      </div>
+    </nav>
+    
+            </>
     )
 }
 
